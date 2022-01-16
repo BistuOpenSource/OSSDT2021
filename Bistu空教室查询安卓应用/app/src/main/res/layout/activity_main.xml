@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?><!--最外层的框架，LinearLayout-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!--    顶层Toolbar重写-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb1"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/logoColor"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/PopupOverlay"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.Toolbar>
+
+    <!--校区选择按钮布局-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="校区："
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"></TextView>
+
+        <Button
+            android:id="@+id/xq_selector"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:background="@drawable/xq_button"
+            android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:gravity="center|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="小营校区"
+            ></Button>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="visible">
+
+        </TextView>
+    </LinearLayout>
+
+    <!--    日期选择器-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="日期："
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"></TextView>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/today"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:text="今天"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/tomorrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:text="明天"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/afterTomorrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="后天"></RadioButton>
+        </RadioGroup>
+    </LinearLayout>
+
+    <!--    时段选择器-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center"
+            android:text="时段："
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp"></TextView>
+
+        <CheckBox
+            android:id="@+id/allDay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="全天"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/morning"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="上午"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/afternoon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="下午"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/night"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="晚上"></CheckBox>
+
+    </LinearLayout>
+
+    <!--"查询"按钮-->
+    <Button
+        android:id="@+id/btSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_selected"
+        android:text="查询空教室"
+        android:textColor="@color/white"
+        android:textSize="18sp"></Button>
+
+    <!--infoMessages，查询信息的提示-->
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="0dp"
+        android:textSize="14sp"
+        android:textColor="?android:attr/textColorPrimary"></TextView>
+    <TextView
+        android:id="@+id/splitLine"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginTop="0dp"
+        android:visibility="invisible"
+        android:background="@drawable/about_border"
+        android:textColor="?android:attr/textColorPrimary"></TextView>
+    <!--空教室数据的RecyclerView主体-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true"
+        android:scrollbars="vertical" />
+</LinearLayout><!--布局结束-->
